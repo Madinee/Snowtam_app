@@ -2,4 +2,5 @@
     <string name="app_name">SnowTam</string>
     <string name="snowtam">SNOWTAM</string>
     <string name="searchQueryHint">Enter OACI code here</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
