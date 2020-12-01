@@ -16,4 +16,6 @@
     <string name="airportname">airportName</string>
     <string name="title_activity_encoding">EncodingActivity</string>
     <string name="snowtamEncoding">SNOWTAM encoding</string>
+    <string name="see_more">see more...</string>
+    <string name="snowtamDecoding">SNOWTAM Decoding</string>
 </resources>

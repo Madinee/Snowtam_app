@@ -1,5 +1,6 @@
 package com.example.snowtam;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,9 +31,11 @@ public class SnowtamListActivity extends AppCompatActivity {
 
         //button onclick
         recentButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 recentButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                recentButton.setTextColor(getResources().getColor(R.color.colorWhite));
             }
         });
 
@@ -40,6 +43,8 @@ public class SnowtamListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 favoritesButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                favoritesButton.setTextColor(getResources().getColor(R.color.colorWhite));
+
             }
         });
 

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EncodingActivity"
     android:orientation="vertical"
-    >
+    tools:context=".service.DecodingActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -20,13 +20,7 @@
         android:layout_height="170dp"
         android:background="@drawable/logo2"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Airport Name"
-        android:layout_margin="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -44,7 +38,7 @@
         app:srcCompat="@drawable/ic_build"
         android:focusable="true"
         android:layout_gravity="end"
-    />
+        />
 
     <Button
         android:id="@+id/textButton"

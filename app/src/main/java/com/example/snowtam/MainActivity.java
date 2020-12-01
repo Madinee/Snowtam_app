@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Intent intent = new Intent(MainActivity.this, SnowtamListActivity.class);
-                return false;
+                startActivity(intent);
+                return true;
             }
 
             @Override

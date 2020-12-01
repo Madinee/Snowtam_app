@@ -22,7 +22,7 @@
         android:layout_margin="20dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:background="@drawable/shape_radius"
+
         >
 
         <Button

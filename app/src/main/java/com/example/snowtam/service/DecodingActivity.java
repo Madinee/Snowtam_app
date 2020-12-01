@@ -1,20 +1,18 @@
-package com.example.snowtam;
-
-import android.os.Bundle;
-import android.widget.TextView;
+package com.example.snowtam.service;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
 
-public class EncodingActivity extends AppCompatActivity {
+import android.os.Bundle;
 
+import com.example.snowtam.R;
 
+public class DecodingActivity extends AppCompatActivity {
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encoding);
+        setContentView(R.layout.activity_decoding);
 
         //find view
         toolbar = findViewById(R.id.toolbar);
@@ -22,7 +20,6 @@ public class EncodingActivity extends AppCompatActivity {
         //to change toolbar title
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle(R.string.snowtamEncoding);
-
+        getSupportActionBar().setTitle(R.string.snowtamDecoding);
     }
 }
