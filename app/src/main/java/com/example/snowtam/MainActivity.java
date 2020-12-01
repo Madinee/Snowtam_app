@@ -2,6 +2,7 @@ package com.example.snowtam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                Intent intent = new Intent(MainActivity.this, SnowtamListActivity.class);
                 return false;
             }
 
