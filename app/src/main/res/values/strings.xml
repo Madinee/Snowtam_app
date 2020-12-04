@@ -18,4 +18,5 @@
     <string name="snowtamEncoding">SNOWTAM encoding</string>
     <string name="see_more">see more...</string>
     <string name="snowtamDecoding">SNOWTAM Decoding</string>
+    <string name="viewResult">Voir tous les resultats</string>
 </resources>
