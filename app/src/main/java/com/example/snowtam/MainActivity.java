@@ -59,13 +59,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String oaci) {
                 //SET THE RESULT Visible when at least one query is mad
-                /*resultButton.setVisibility(View.VISIBLE);
+                resultButton.setVisibility(View.VISIBLE);
                 listSearchString.add(oaci);
-
-                 */
-                Intent intent = new Intent(MainActivity.this, SnowtamListActivity.class);
-                // intent.putStringArrayListExtra(tabResarch, listSearchString);
-                startActivity(intent);
                 return true;
             }
 
@@ -92,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, SnowtamListActivity.class);
+                intent.putStringArrayListExtra(tabResarch, listSearchString);
+                startActivity(intent);
             }
         });
 

@@ -27,7 +27,7 @@ public class SnowtamListActivity extends AppCompatActivity {
     Intent resultsearchIntent = getIntent();
     ArrayList<String> listresearch = new ArrayList<String>();
     String[] listresearchArray;
-    RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class SnowtamListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         recentButton=findViewById(R.id.recentButton);
         favoritesButton=findViewById(R.id.favoriButton);
+        recyclerView = findViewById(R.id.recycler_view);
 
         //to change toolbar title
         setSupportActionBar(toolbar);
@@ -81,8 +82,13 @@ public class SnowtamListActivity extends AppCompatActivity {
                     Log.e(TAG, "Search snowTam error"+error.getMessage());
                 }
             };
-
         };
+       /* for(int i=0; i<listresearchArray.length;i++){
+            SnowtamGetter.searchSnowtam(this, listresearchArray[i], rep, error);
+        }
+
+       */
+
 
     }
 }
