@@ -1,46 +1,65 @@
 package com.example.snowtam.adapter;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.snowtam.EncodingActivity;
 import com.example.snowtam.R;
+
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private List<String> list;
+
+    public SnowtamListAdapter(List<String> list) {
+        this.list = list;
+    }
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-//        private final TextView textView;
+        private TextView oaciCode;
+        private TextView airportName;
 
-        public ViewHolder(View view) {
-            super(view);
-            // Define click listener for the ViewHolder's View
 
-//            textView = (TextView) view.findViewById(R.id.textView);
+        public ViewHolder(View itemView) {
+            super(itemView);
+            oaciCode = (TextView) itemView.findViewById(R.id.oaciCode);
+//            airportName = (TextView) itemView.findViewById(R.id.airportName);
+
         }
 
-        public TextView getTextView() {
-           /* return textView;*/
-            return null;
+        public TextView getOaciCode() {
+            return oaciCode;
+        }
+
+
+
+        public void setAll(final String location, final String stateName) {
+           oaciCode.setText(location);
+//           airportName.setText(stateName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), EncodingActivity.class);
+                    intent.putExtra("location",location);
+//                    intent.putExtra("stateName",stateName);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public SnowtamListAdapter(String[] dataSet) {
-        localDataSet = dataSet;
-    }
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -56,15 +75,17 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getOaciCode().setText(list.get(position));
+
+//        String location=list.get(position).getLocation();
+//        String stateName=list.get(position).getStateName();
+//        viewHolder.setAll(location, stateName);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+
+        return list.size();
     }
 }
 

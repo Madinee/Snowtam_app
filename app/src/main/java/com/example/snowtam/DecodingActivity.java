@@ -1,4 +1,4 @@
-package com.example.snowtam.service;
+package com.example.snowtam;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

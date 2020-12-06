@@ -10,16 +10,14 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.Response;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
-    SearchView searchView;
+    SearchView searchView1, searchView2, searchView3, searchView4;
     FloatingActionButton fab;
     Button resultButton;
 
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         //find views
         toolbar = findViewById(R.id.toolbar);
-        searchView = findViewById(R.id.search);
+        searchView1 = findViewById(R.id.search1);
         fab = findViewById(R.id.floatingActionButton);
         resultButton = findViewById(R.id.showResults);
 
@@ -46,16 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         //to change searchview icon
-        int searchIconId = searchView.getContext().getResources().getIdentifier("android:id/search_button", null, null);
-        ImageView searchIcon = searchView.findViewById(searchIconId);
+        int searchIconId = searchView1.getContext().getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView searchIcon = searchView1.findViewById(searchIconId);
         searchIcon.setImageResource(R.drawable.ic_baseline_search_24);
 
-        //to change search view close icon button
-//        ImageView iconClose = searchView.findViewById(R.id.search_close_btn);
-//        iconClose.setColorFilter(R.color.colorPrimary);
 
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String oaci) {
                 //SET THE RESULT Visible when at least one query is mad

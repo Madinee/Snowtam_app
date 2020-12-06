@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
@@ -18,16 +19,16 @@ import com.example.snowtam.service.SnowtamGetter;
 import com.example.snowtam.service.data.Snowtam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SnowtamListActivity extends AppCompatActivity {
     private static final String TAG = "SnowtamlistActivity";
     Toolbar toolbar;
     Button recentButton;
     Button favoritesButton;
-    Intent resultsearchIntent = getIntent();
-    ArrayList<String> listresearch = new ArrayList<String>();
-    String[] listresearchArray;
+    List<String> listresearch;
     RecyclerView recyclerView;
+    SnowtamListAdapter snowtamListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class SnowtamListActivity extends AppCompatActivity {
         recentButton=findViewById(R.id.recentButton);
         favoritesButton=findViewById(R.id.favoriButton);
         recyclerView = findViewById(R.id.recycler_view);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         //to change toolbar title
         setSupportActionBar(toolbar);
@@ -66,23 +69,12 @@ public class SnowtamListActivity extends AppCompatActivity {
         });
 
         //Get the data and display them in the recyclerView
-
+//
+        Intent resultsearchIntent = getIntent();
         listresearch = resultsearchIntent.getStringArrayListExtra("tabresarchs");
-        listresearchArray = (String[]) listresearch.toArray();
+        snowtamListAdapter=new SnowtamListAdapter(listresearch);
+        recyclerView.setAdapter(snowtamListAdapter);
 
-        Response.Listener<Snowtam> rep = new Response.Listener<Snowtam>() {
-            @Override
-            public void onResponse(Snowtam response) {
-                SnowtamListAdapter snlAdapter = new SnowtamListAdapter(listresearchArray);
-                recyclerView.setAdapter(snlAdapter);
-            };
-            final Response.ErrorListener error = new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG, "Search snowTam error"+error.getMessage());
-                }
-            };
-        };
        /* for(int i=0; i<listresearchArray.length;i++){
             SnowtamGetter.searchSnowtam(this, listresearchArray[i], rep, error);
         }

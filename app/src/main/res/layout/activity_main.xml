@@ -18,18 +18,62 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <SearchView
-        android:id="@+id/search"
+        android:id="@+id/search1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="220dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layoutDirection="rtl"
-        android:clickable="true"
+        android:queryHint="@string/searchQueryHint"
+        android:iconifiedByDefault="false"
+        android:background="@drawable/shape"
+         />
+
+    <SearchView
+        android:id="@+id/search2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search1"
+        android:layout_margin="10dp"
         android:queryHint="@string/searchQueryHint"
         android:background="@drawable/shape"
-        android:focusable="true" />
+        android:iconifiedByDefault="false"
+        android:visibility="invisible"
+
+     />
+    <SearchView
+        android:id="@+id/search3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search2"
+        android:layout_margin="10dp"
+        android:queryHint="@string/searchQueryHint"
+        android:background="@drawable/shape"
+        android:iconifiedByDefault="false"
+        android:visibility="invisible"
+        />
+    <SearchView
+        android:id="@+id/search4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search3"
+        android:layout_margin="10dp"
+        android:queryHint="@string/searchQueryHint"
+        android:background="@drawable/shape"
+        android:iconifiedByDefault="false"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/showResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_above="@+id/floatingActionButton"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/shape_button_home"
+        android:text="@string/viewResult"
+        tools:visibility="invisible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -37,23 +81,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="10dp"
         android:clickable="true"
         android:contentDescription="Clic here to add more oaci code"
         android:focusable="true"
         app:srcCompat="@drawable/baseline_add_white_24dp" />
-
-    <Button
-        android:id="@+id/showResults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="-43dp"
-        android:layout_toStartOf="@+id/floatingActionButton"
-        android:text="@string/viewResult"
-        tools:visibility="invisible" />
-
 
 </RelativeLayout>
