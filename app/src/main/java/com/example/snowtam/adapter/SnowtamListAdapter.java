@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.snowtam.EncodingActivity;
 import com.example.snowtam.R;
+import com.example.snowtam.service.data.Snowtam;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.ViewHolder> {
 
-    private List<String> list;
+    private List<Snowtam> list;
 
-    public SnowtamListAdapter(List<String> list) {
+    public SnowtamListAdapter(List<Snowtam> list) {
         this.list = list;
     }
 
@@ -28,13 +29,13 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView oaciCode;
-        private TextView airportName;
-
+        private TextView StateName;
+        private String all;
 
         public ViewHolder(View itemView) {
             super(itemView);
             oaciCode = (TextView) itemView.findViewById(R.id.oaciCode);
-//            airportName = (TextView) itemView.findViewById(R.id.airportName);
+            StateName = (TextView) itemView.findViewById(R.id.airportName);
 
         }
 
@@ -46,14 +47,14 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
 
         public void setAll(final String location, final String stateName) {
            oaciCode.setText(location);
-//           airportName.setText(stateName);
+           StateName.setText(stateName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), EncodingActivity.class);
                     intent.putExtra("location",location);
-//                    intent.putExtra("stateName",stateName);
+                    intent.putExtra("SnowTamData", all );
                     itemView.getContext().startActivity(intent);
                 }
             });
@@ -75,11 +76,10 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        viewHolder.getOaciCode().setText(list.get(position));
-
-//        String location=list.get(position).getLocation();
-//        String stateName=list.get(position).getStateName();
-//        viewHolder.setAll(location, stateName);
+    //    viewHolder.getOaciCode().setText(list.get(position));
+        String location=list.get(position).getLocation();
+        String stateName=list.get(position).getStateName();
+        viewHolder.setAll(location, stateName);
     }
 
     @Override

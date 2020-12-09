@@ -16,13 +16,19 @@ public class SnowtamGetter {
 
     public static void searchSnowtam(Context context,
                                      String oaci,
-                                     Response.Listener<Snowtam> response,
+                                     Response.Listener<Snowtam[]> response,
                                      Response.ErrorListener errorListener
     ){
         RequestQueue queue = Volley.newRequestQueue(context);
         System.out.println("id : " +oaci);
-        String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key=" +APIKEY+ "-f1c05c5a3d15&format=json&criticality=1&locations="+ URLEncoder.encode(oaci);
+        String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key="+APIKEY+"&format=json&criticality="+1+"locations="+oaci;
         GsonRequest<Snowtam> gsonRequest=new GsonRequest(url, Snowtam.class,null,response,errorListener);
         queue.add(gsonRequest);
+    }
+
+    public static void parseSnowtam(String oaci) {
+
+
+
     }
 }

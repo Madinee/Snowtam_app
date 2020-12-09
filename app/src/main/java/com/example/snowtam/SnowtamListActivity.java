@@ -26,7 +26,7 @@ public class SnowtamListActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button recentButton;
     Button favoritesButton;
-    List<String> listresearch;
+    ArrayList<Snowtam> listresearch;
     RecyclerView recyclerView;
     SnowtamListAdapter snowtamListAdapter;
 
@@ -71,7 +71,8 @@ public class SnowtamListActivity extends AppCompatActivity {
         //Get the data and display them in the recyclerView
 //
         Intent resultsearchIntent = getIntent();
-        listresearch = resultsearchIntent.getStringArrayListExtra("tabresarchs");
+        Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
+        listresearch = (ArrayList<Snowtam>)bundlegot.getSerializable("tabresarchs");
         snowtamListAdapter=new SnowtamListAdapter(listresearch);
         recyclerView.setAdapter(snowtamListAdapter);
 
