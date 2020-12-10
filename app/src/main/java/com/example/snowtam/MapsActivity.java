@@ -5,11 +5,21 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.util.Log;
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.example.snowtam.adapter.SnowtamListAdapter;
+import com.example.snowtam.service.SnowtamGetter;
+import com.example.snowtam.service.data.Location;
+import com.example.snowtam.service.data.Snowtam;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,12 +27,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+<<<<<<< HEAD
+
+import java.util.ArrayList;
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Toolbar toolbar;
     FloatingActionButton fab;
+<<<<<<< HEAD
+    ArrayList<Snowtam> listresearch = new ArrayList<Snowtam>();
+    ArrayList longTab = new ArrayList();
+    ArrayList latTab = new ArrayList();
+
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +58,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         toolbar = findViewById(R.id.toolbar);
 
 
+<<<<<<< HEAD
+        //GET THE DATA TO DISPLAY ON THE MAP
+        Intent resultsearchIntent = getIntent();
+        Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
+        listresearch = (ArrayList<Snowtam>) bundlegot.getSerializable("tabresarchs");
+
+        Response.Listener<Location> rep = new Response.Listener<Location>() {
+            @Override
+            public void onResponse(Location response) {
+                longTab.add(response.getLng());
+                latTab.add(response.getLat());
+            }
+        };
+
+        Response.ErrorListener error = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("MapsActivity", "Adresse introuvable");
+            }
+        };
+
+        for(Snowtam sn: listresearch){
+            SnowtamGetter.getCoordinates(MapsActivity.this, sn.getLocation(),rep,error);
+        }
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
     }
 

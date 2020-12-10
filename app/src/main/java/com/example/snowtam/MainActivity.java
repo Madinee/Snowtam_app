@@ -67,8 +67,18 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         search3.setVisibility(View.VISIBLE);
                         break;
+<<<<<<< HEAD
+                    case "BIAR":
+                        Snowtam sn4 = new Snowtam();
+                        sn4.setLocation("BIAR");
+                        sn4.setStateName("Iceland");
+                        sn4.setAll("(SNOWTAM 2282 A) BIAR B) 12082200 C) 01 F) 3 7/3 7/3 7 G) XX/XX/XX H) 5/5/5 S) 12090600 T) RWY 01 CONTAMINATION 100 PERCENT SANDED  )");
+                        listSearchString.add(sn4);
+                        toastAjout.show();
+=======
                     case 4:
                         search4.setVisibility(View.VISIBLE);
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
                         break;
                     default:
                         Snackbar.make(view, "Sorry you can't enter no more than 4 icao code at the same time", Snackbar.LENGTH_LONG)

@@ -10,21 +10,31 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+<<<<<<< HEAD
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.snowtam.MainActivity;
+import com.example.snowtam.service.data.Location;
+=======
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.snowtam.MainActivity;
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 import com.example.snowtam.service.data.Snowtam;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class SnowtamGetter {
  private static final String  APIKEY="c63cfde0-3a51-11eb-aa88-ab02fc941694";
+<<<<<<< HEAD
+ private static final String gmAPIKEY="";
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
     public SnowtamGetter() {
     }
 
@@ -36,9 +46,9 @@ public class SnowtamGetter {
         RequestQueue queue = Volley.newRequestQueue(context);
        final Snowtam  snowtam=new Snowtam();
         System.out.println("id : " +oaci);
-       final String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key=" +APIKEY+ "&format=json&criticality=1&locations="+ oaci;
-        //System.out.println( url);
-       // final String url="http://10.188.192.167:"+oaci+"/icao";
+//        final String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key=" +APIKEY+ "&format=json&criticality=1&locations="+ oaci;
+//        System.out.println( url);
+        final String url="http://10.188.192.167:"+oaci+"/icao";
         System.out.println( url);
 
         StringRequest req = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -49,11 +59,11 @@ public class SnowtamGetter {
                 System.out.println(snowtam.toString());
                 try {
 
-
                     JSONArray array=new JSONArray(response);
                     JSONObject obj = array.getJSONObject(0);
+<<<<<<< HEAD
 
-                    snowtam.setLocation(obj.getString("location"));
+                    snowtam.setLocation("holooo");
                     snowtam.setStateName(obj.getString("StateName"));
 
                     System.out.println(snowtam.toString());
@@ -62,6 +72,18 @@ public class SnowtamGetter {
                     e.printStackTrace();
                 }
 
+=======
+
+                    snowtam.setLocation("holooo");
+                    snowtam.setStateName(obj.getString("StateName"));
+
+                    System.out.println(snowtam.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
             }
         }, new Response.ErrorListener() {
             @Override
@@ -76,5 +98,13 @@ public class SnowtamGetter {
 
     }
 
+    public static void getCoordinates(Context context, String address, Response.Listener<Location> response, Response.ErrorListener error) {
+
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key="+;
+        RequestQueue queue = Volley.newRequestQueue(context);
+        GsonRequest<Location> gsonRequest = new GsonRequest<Location>(url, Location.class, null, response, error);
+// Access the RequestQueue through your singleton class.
+        queue.add(gsonRequest);
+    }
 
 }
