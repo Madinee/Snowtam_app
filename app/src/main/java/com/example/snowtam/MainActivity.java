@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         Snowtam sn4 = new Snowtam();
                         sn4.setLocation("BIAR");
                         sn4.setStateName("Iceland");
-                        sn4.setAll("(SNOWTAM 2282 A) BIAR B) 12082200 C) 01 F) 3 7/3 7/3 7 G) XX/XX/XX H) 5/5/5 S) 12090600\n T) RWY 01 CONTAMINATION 100 PERCENT SANDED  )");
+                        sn4.setAll("(SNOWTAM 2282 A) BIAR B) 12082200 C) 01 F) 3 7/3 7/3 7 G) XX/XX/XX H) 5/5/5 S) 12090600 T) RWY 01 CONTAMINATION 100 PERCENT SANDED  )");
                         listSearchString.add(sn4);
                         toastAjout.show();
                         break;

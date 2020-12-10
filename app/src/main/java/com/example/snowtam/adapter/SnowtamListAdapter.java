@@ -11,8 +11,10 @@ import com.example.snowtam.EncodingActivity;
 import com.example.snowtam.R;
 import com.example.snowtam.service.data.Snowtam;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.ViewHolder> {
@@ -29,40 +31,23 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView oaciCode;
-        private TextView StateName;
-        private String all;
+        private TextView airportName;
+        private View itemView;
 
-        public ViewHolder(View itemView) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             oaciCode = (TextView) itemView.findViewById(R.id.oaciCode);
-            StateName = (TextView) itemView.findViewById(R.id.airportName);
+            airportName = (TextView) itemView.findViewById(R.id.airportName);
 
         }
 
-        public TextView getOaciCode() {
-            return oaciCode;
-        }
-
-
-
-        public void setAll(final String location, final String stateName) {
-           oaciCode.setText(location);
-           StateName.setText(stateName);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), EncodingActivity.class);
-                    intent.putExtra("location",location);
-                    intent.putExtra("SnowTamData", all );
-                    itemView.getContext().startActivity(intent);
-                }
-            });
-        }
     }
 
 
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
@@ -74,12 +59,25 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-    //    viewHolder.getOaciCode().setText(list.get(position));
-        String location=list.get(position).getLocation();
-        String stateName=list.get(position).getStateName();
-        viewHolder.setAll(location, stateName);
+//        String location=list.get(position).getLocation();
+//        String stateName=list.get(position).getStateName();
+
+        final Snowtam snowtam=list.get(position);
+        viewHolder.oaciCode.setText(snowtam.getLocation());
+        viewHolder.airportName.setText(snowtam.getStateName());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println(snowtam.getId());
+                    Intent intent = new Intent(viewHolder.itemView.getContext(), EncodingActivity.class);
+                    intent.putExtra("all",snowtam.getAll());
+                    viewHolder.itemView.getContext().startActivity(intent);
+                }
+            });
+//        viewHolder.setAll(location, stateName);
     }
 
     @Override

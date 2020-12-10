@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/encoding"
+        android:title="@string/encoding"
+        />
+    <item android:id="@+id/decoding"
+        android:title="@string/decoding" />
+    <item android:id="@+id/map"
+        android:title="@string/map" />
+</menu>

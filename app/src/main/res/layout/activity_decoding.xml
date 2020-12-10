@@ -21,35 +21,43 @@
         android:background="@drawable/logo2"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/ic_build"
-        android:focusable="true"
-        android:layout_gravity="end"
-        />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/textButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:drawableStart="@drawable/dotted"
-        android:textSize="20sp"
-        android:paddingLeft="30dp"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/page_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_build"
+            android:focusable="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/page_view"
+            android:layout_gravity="end"
+            />
 
+        <Button
+            android:id="@+id/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/floatingActionButton"
+            android:drawableStart="@drawable/dotted"
+            android:textSize="20sp"
+            android:paddingLeft="30dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+
+    </RelativeLayout>
 </LinearLayout>

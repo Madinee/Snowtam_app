@@ -37,10 +37,10 @@ public class SnowtamListActivity extends AppCompatActivity {
 
         //find view
         toolbar = findViewById(R.id.toolbar);
-        recentButton=findViewById(R.id.recentButton);
-        favoritesButton=findViewById(R.id.favoriButton);
+        recentButton = findViewById(R.id.recentButton);
+        favoritesButton = findViewById(R.id.favoriButton);
         recyclerView = findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //to change toolbar title
@@ -72,15 +72,18 @@ public class SnowtamListActivity extends AppCompatActivity {
 //
         Intent resultsearchIntent = getIntent();
         Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
-        listresearch = (ArrayList<Snowtam>)bundlegot.getSerializable("tabresarchs");
-        snowtamListAdapter=new SnowtamListAdapter(listresearch);
+        listresearch = (ArrayList<Snowtam>) bundlegot.getSerializable("tabresarchs");
+        snowtamListAdapter = new SnowtamListAdapter(listresearch);
         recyclerView.setAdapter(snowtamListAdapter);
 
        /* for(int i=0; i<listresearchArray.length;i++){
             SnowtamGetter.searchSnowtam(this, listresearchArray[i], rep, error);
         }
-
        */
+        //Log.i("ListActivity", listresearch.get(0).getAll());
+
+
+        //Parcours du tableau
 
 
     }
