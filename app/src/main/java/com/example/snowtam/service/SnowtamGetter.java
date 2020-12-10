@@ -19,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class SnowtamGetter {
@@ -34,9 +36,9 @@ public class SnowtamGetter {
         RequestQueue queue = Volley.newRequestQueue(context);
        final Snowtam  snowtam=new Snowtam();
         System.out.println("id : " +oaci);
-//        final String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key=" +APIKEY+ "&format=json&criticality=1&locations="+ oaci;
-//        System.out.println( url);
-        final String url="http://10.188.192.167:"+oaci+"/icao";
+       final String url ="https://applications.icao.int/dataservices/api/notams-realtime-list?api_key=" +APIKEY+ "&format=json&criticality=1&locations="+ oaci;
+        //System.out.println( url);
+       // final String url="http://10.188.192.167:"+oaci+"/icao";
         System.out.println( url);
 
         StringRequest req = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -47,10 +49,11 @@ public class SnowtamGetter {
                 System.out.println(snowtam.toString());
                 try {
 
+
                     JSONArray array=new JSONArray(response);
                     JSONObject obj = array.getJSONObject(0);
 
-                    snowtam.setLocation("holooo");
+                    snowtam.setLocation(obj.getString("location"));
                     snowtam.setStateName(obj.getString("StateName"));
 
                     System.out.println(snowtam.toString());
@@ -72,4 +75,6 @@ public class SnowtamGetter {
         return snowtam;
 
     }
+
+
 }

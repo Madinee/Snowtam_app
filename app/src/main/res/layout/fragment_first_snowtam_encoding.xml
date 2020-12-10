@@ -19,14 +19,14 @@
             android:layout_margin="10dp"
             android:textColor="@android:color/black"
             android:textSize="25sp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            />
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
     </LinearLayout>
 
 </FrameLayout>

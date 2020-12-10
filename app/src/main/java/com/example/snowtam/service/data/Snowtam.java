@@ -1,6 +1,8 @@
 package com.example.snowtam.service.data;
 
-public class Snowtam {
+import java.io.Serializable;
+
+public class Snowtam implements Serializable {
     private String id;
     private String all;//correspond à all
     private String StateName;

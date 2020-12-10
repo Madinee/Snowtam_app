@@ -53,31 +53,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.snowtam);
 
 
-        //to change searchview icon
-//        int searchIconId = searchView1.getContext().getResources().getIdentifier("android:id/search_button", null, null);
-//        ImageView searchIcon = searchView1.findViewById(searchIconId);
-//        searchIcon.setImageResource(R.drawable.ic_baseline_search_24);
-
-
-
-//        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            String lastText = null;
-//            @Override
-//            public boolean onQueryTextSubmit(String oaci) {
-//                //SET THE RESULT Visible when at least one query is mad
-//                resultButton.setVisibility(View.VISIBLE);
-////                listSearchString.add(oaci);
-//                searchString=oaci;
-//                System.out.println("oaci code"+searchString);
-//
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                return false;
-//            }
-//        });
 
 
         //floating button
