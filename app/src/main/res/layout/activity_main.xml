@@ -17,51 +17,63 @@
         app:titleTextColor="@color/colorWhite"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <SearchView
+    <EditText
         android:id="@+id/search1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/toolbar"
         android:layout_marginTop="220dp"
+        android:padding="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:queryHint="@string/searchQueryHint"
-        android:iconifiedByDefault="false"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:inputType="text"
+        android:hint="@string/searchQueryHint"
         android:background="@drawable/shape"
-         />
+        android:autofillHints="" />
 
-    <SearchView
+    <EditText
         android:id="@+id/search2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/search1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:padding="10dp"
         android:layout_margin="10dp"
-        android:queryHint="@string/searchQueryHint"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:inputType="text"
+        android:hint="@string/searchQueryHint"
         android:background="@drawable/shape"
-        android:iconifiedByDefault="false"
+        android:autofillHints=""
         android:visibility="invisible"
 
      />
-    <SearchView
+    <EditText
         android:id="@+id/search3"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/search2"
         android:layout_margin="10dp"
-        android:queryHint="@string/searchQueryHint"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:inputType="text"
+        android:hint="@string/searchQueryHint"
         android:background="@drawable/shape"
+        android:autofillHints=""
         android:iconifiedByDefault="false"
         android:visibility="invisible"
         />
-    <SearchView
+    <EditText
         android:id="@+id/search4"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:padding="10dp"
         android:layout_below="@id/search3"
         android:layout_margin="10dp"
-        android:queryHint="@string/searchQueryHint"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:inputType="text"
+        android:hint="@string/searchQueryHint"
         android:background="@drawable/shape"
-        android:iconifiedByDefault="false"
+        android:autofillHints=""
         android:visibility="invisible"
         />
     <Button
@@ -73,7 +85,7 @@
         android:textColor="@color/colorWhite"
         android:background="@drawable/shape_button_home"
         android:text="@string/viewResult"
-        tools:visibility="invisible" />
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"

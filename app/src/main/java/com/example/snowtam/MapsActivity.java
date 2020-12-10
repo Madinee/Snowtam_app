@@ -5,7 +5,10 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,18 +27,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+<<<<<<< HEAD
 
 import java.util.ArrayList;
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Toolbar toolbar;
     FloatingActionButton fab;
+<<<<<<< HEAD
     ArrayList<Snowtam> listresearch = new ArrayList<Snowtam>();
     ArrayList longTab = new ArrayList();
     ArrayList latTab = new ArrayList();
 
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         toolbar = findViewById(R.id.toolbar);
 
 
+<<<<<<< HEAD
         //GET THE DATA TO DISPLAY ON THE MAP
         Intent resultsearchIntent = getIntent();
         Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
@@ -72,6 +82,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for(Snowtam sn: listresearch){
             SnowtamGetter.getCoordinates(MapsActivity.this, sn.getLocation(),rep,error);
         }
+=======
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
     }
 

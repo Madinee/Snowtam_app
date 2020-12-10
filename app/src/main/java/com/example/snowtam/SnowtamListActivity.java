@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,7 +27,7 @@ public class SnowtamListActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button recentButton;
     Button favoritesButton;
-    ArrayList<Snowtam> listresearch;
+    List<String> listresearch;
     RecyclerView recyclerView;
     SnowtamListAdapter snowtamListAdapter;
 
@@ -69,12 +70,53 @@ public class SnowtamListActivity extends AppCompatActivity {
         });
 
         //Get the data and display them in the recyclerView
+<<<<<<< HEAD
 //
         Intent resultsearchIntent = getIntent();
         Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
         listresearch = (ArrayList<Snowtam>) bundlegot.getSerializable("tabresarchs");
         snowtamListAdapter = new SnowtamListAdapter(listresearch);
         recyclerView.setAdapter(snowtamListAdapter);
+=======
+
+//        Intent resultsearchIntent = getIntent();
+//        listresearch = resultsearchIntent.getStringArrayListExtra("tabresarchs");
+//        snowtamListAdapter=new SnowtamListAdapter(listresearch);
+//        recyclerView.setAdapter(snowtamListAdapter);
+
+        //get icoa
+        String oaci1 = getIntent().getStringExtra("oaci1");
+        String oaci2 = getIntent().getStringExtra("oaci2");
+        String oaci3 = getIntent().getStringExtra("oaci3");
+        String oaci4 = getIntent().getStringExtra("oaci4");
+
+        List<String> oacicodeList = new ArrayList<>();
+        if(!TextUtils.isEmpty(oaci1)){
+//            oacicodeList.add(oaci1);
+            oacicodeList.add("8080");
+        }
+        if(!TextUtils.isEmpty(oaci2)){
+            oacicodeList.add(oaci2);
+
+
+        }
+        if(!TextUtils.isEmpty(oaci3)){
+            oacicodeList.add(oaci3);
+
+        }
+        if(!TextUtils.isEmpty(oaci4)){
+            oacicodeList.add(oaci4);
+
+
+        }
+
+
+
+        for (int i = 0; i < oacicodeList.size(); i++) {
+          listresearch.add(SnowtamGetter.searchSnowtam(SnowtamListActivity.this, oacicodeList.get(i)));
+            mAdapter=new SnowtamListAdapter(listresearch);
+            recyclerView.setAdapter(mAdapter);
+>>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
        /* for(int i=0; i<listresearchArray.length;i++){
             SnowtamGetter.searchSnowtam(this, listresearchArray[i], rep, error);
