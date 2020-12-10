@@ -1,9 +1,13 @@
 package com.example.snowtam.service.data;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
 public class Snowtam implements Serializable {
+
+
     @SerializedName("id")
     private String id;
 
@@ -236,4 +240,72 @@ public class Snowtam implements Serializable {
     public void setAll(String all) {
         this.all = all;
     }
+
+
+    private String parseA(String str) {
+    //Parsing SnowTam
+    String a = new String();
+        if(str.contains("A)")) {
+        a = str.split("A\\)")[1].split("[B-T]\\)")[0]; //récupère la chaine de caractère comprise entre A) et Une lettre + ')'
+        a = a.trim(); //enlève les " " et "\n" de la chaine de caractère
+    }
+        Log.d("A)", "'" + a + "'");
+        return a;
+}
+
+    private String parseB(String str) {
+        String b = new String();
+        if(str.contains("B)")) {
+            b = str.split("B\\)")[1].split("[C-T]\\)")[0];
+            b = b.trim();
+        }
+        Log.d("B)", "'" + b + "'");
+        return b;
+    }
+
+    /*private ArrayList<Runway> parseRunways(String str) {
+        ArrayList<Runway> run = new ArrayList<Runway>();
+        int count = 0, i = 0;
+        while((i = str.indexOf("C)", i)) != -1) {
+            count++; i++;
+        }
+        Log.d("NB_RUNWAY", Integer.toString(count));
+        for(i = 0; i < count; i++) {
+            run.add(new Runway(str, i));
+        }
+        return run;
+    }
+
+     */
+
+    private String parseR(String str) {
+        String r = new String();
+        if(str.contains("R)")) {
+            r = str.split("R\\)")[1].split("[S-T]\\)")[0];
+            r = r.trim();
+        }
+        Log.d("R)", "'" + r + "'");
+        return r;
+    }
+
+    private String parseS(String str) {
+        String s = new String();
+        if(str.contains("S)")) {
+            s = str.split("S\\)")[1].split("T\\)")[0];
+            s = s.trim();
+        }
+        Log.d("S)", "'" + s + "'");
+        return s;
+    }
+
+    private String parseT(String str) {
+        String t = new String();
+        if(str.contains("T)")) {
+            t = str.split("T\\)")[1].split("\\)")[0];
+            t = t.trim();
+        }
+        Log.d("T)", "'" + t + "'");
+        return t;
+    }
+
 }
