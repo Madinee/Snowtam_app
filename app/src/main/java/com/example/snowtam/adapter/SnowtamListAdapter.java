@@ -71,9 +71,12 @@ public class SnowtamListAdapter extends RecyclerView.Adapter<SnowtamListAdapter.
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     System.out.println(snowtam.getId());
                     Intent intent = new Intent(viewHolder.itemView.getContext(), EncodingActivity.class);
                     intent.putExtra("all",snowtam.getAll());
+                    intent.putExtra("location", snowtam.getLocation());
+                    intent.putExtra("StateName", snowtam.getStateName());
                     viewHolder.itemView.getContext().startActivity(intent);
                 }
             });

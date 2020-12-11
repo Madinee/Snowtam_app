@@ -1,6 +1,5 @@
 package com.example.snowtam.service.data;
 
-<<<<<<< HEAD
 import android.util.Log;
 
 import java.io.Serializable;
@@ -15,10 +14,6 @@ import com.google.gson.annotations.SerializedName;
 public class Snowtam implements Serializable {
 
     //API DATA
-    @SerializedName("id")
-=======
-public class Snowtam {
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
     private String id;
     private String all;//correspond à all
     private String StateName;
@@ -67,10 +62,20 @@ public class Snowtam {
 
     @Override
     public String toString() {
-        return "Snowtam{" +
-                "StateName='" + StateName + '\'' +
-                ", location='" + location + '\'' +
-                '}';
+        String ret = new String();
+        ret = "A) " + indicateurEmplacement + "\n" +
+                "B) " + publicationDate + "\n";
+        for (Runway r : runways) {
+            ret += r.toString() + "\n";
+        }
+        if(!airDeTrafic.isEmpty())
+            ret += "R)" + airDeTrafic + "\n";
+        if(!prochaineObservation.isEmpty())
+            ret += "S)" + prochaineObservation + "\n";
+        if(!remarques.isEmpty())
+            ret += "T)" + remarques;
+        Log.d("SNOWTAM", "'" + ret + "'");
+        return ret;
     }
 
     //Parsing arguments
@@ -90,12 +95,15 @@ public class Snowtam {
     private String prochaineObservation_decode; //S)
     private String remarques_decode; //T)
 
+    private String snowtam;
+    private String snowtamTranslated;
+
 
 
     //Parsing functions
 
-    private String getSnowtamDate(String snowtam){
-        String parsedSnowtam=parseA(snowtam)+parseB(snowtam)+parseR(snowtam)+parseS(snowtam)+parseT(snowtam);
+    public String getSnowtamData(String snowtam){
+        String parsedSnowtam="A)"+parseA(snowtam)+"\n"+"B)"+parseB(snowtam)+"\n"+"R)"+parseR(snowtam)+"\n"+"S)"+parseS(snowtam)+"\n"+"T)"+parseT(snowtam);
         return parsedSnowtam;
     }
 
@@ -162,6 +170,28 @@ public class Snowtam {
         }
         Log.d("T)", "'" + t + "'");
         return t;
+    }
+
+    public void translateSnowtam() {
+        translateA();
+        translateB();
+        translateR();
+        translateS();
+        translateT();
+
+        snowtamTranslated = new String();
+        snowtamTranslated = indicateurEmplacement_decode + "\n\n" +
+                publicationDate_decode + "\n\n";
+        for (Runway r : runways) {
+            snowtamTranslated += r.translated();
+        }
+        if(!airDeTrafic_decode.isEmpty())
+            snowtamTranslated += airDeTrafic_decode + "\n\n";
+        if(!prochaineObservation_decode.isEmpty())
+            snowtamTranslated += prochaineObservation_decode + "\n\n";
+        if(!remarques_decode.isEmpty())
+            snowtamTranslated += remarques_decode;
+        Log.d("SNOWTAM", "'" + snowtamTranslated + "'");
     }
 
     private void translateA() {

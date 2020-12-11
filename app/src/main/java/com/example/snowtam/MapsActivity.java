@@ -4,11 +4,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,24 +26,22 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-<<<<<<< HEAD
 
+import java.io.IOException;
 import java.util.ArrayList;
-=======
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
+import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Toolbar toolbar;
     FloatingActionButton fab;
-<<<<<<< HEAD
-    ArrayList<Snowtam> listresearch = new ArrayList<Snowtam>();
-    ArrayList longTab = new ArrayList();
-    ArrayList latTab = new ArrayList();
+    ArrayList<Double> longTab = new ArrayList<Double>();
+    ArrayList<Double> latTab = new ArrayList<Double>();
+    String location;
+    Address address;
 
-=======
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +51,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         //find view
         toolbar = findViewById(R.id.toolbar);
 
 
-<<<<<<< HEAD
         //GET THE DATA TO DISPLAY ON THE MAP
-        Intent resultsearchIntent = getIntent();
-        Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
-        listresearch = (ArrayList<Snowtam>) bundlegot.getSerializable("tabresarchs");
+       Intent intent = getIntent();
+       location = intent.getExtras().getString("location");
+       intent.putExtra("location", location);
+       Log.i("MapsActivity", location);
 
+        //Geocoder test
+        Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+        try {
+            List<Address> listAdress = geocoder.getFromLocationName(location, 1);
+            if(listAdress.size()>0){
+                address = listAdress.get(0);
+                latTab.add(address.getLatitude());
+                longTab.add(address.getLongitude());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
         Response.Listener<Location> rep = new Response.Listener<Location>() {
             @Override
             public void onResponse(Location response) {
@@ -78,12 +93,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.e("MapsActivity", "Adresse introuvable");
             }
         };
+            SnowtamGetter.getCoordinates(MapsActivity.this, location,rep,error);
 
-        for(Snowtam sn: listresearch){
-            SnowtamGetter.getCoordinates(MapsActivity.this, sn.getLocation(),rep,error);
-        }
-=======
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
+         */
 
     }
 
@@ -100,10 +112,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        for(Double lat : latTab ){
+            LatLng airport1 = new LatLng(lat, longTab.get(latTab.indexOf(lat)));
+            mMap.addMarker(new MarkerOptions().position(airport1).title("Marker in airport "+longTab.get(latTab.indexOf(lat))+1));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(airport1));
+        }
     }
 //fab button
 

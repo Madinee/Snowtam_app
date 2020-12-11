@@ -1,5 +1,6 @@
 package com.example.snowtam.frament;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.snowtam.R;
+import com.example.snowtam.service.data.Snowtam;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,50 +20,45 @@ import com.example.snowtam.R;
  */
 public class FirstSnowtamEncodingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextView airportName, allView;
+    String location,all,StateName;
 
     public FirstSnowtamEncodingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstSnowtamEncodingFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static FirstSnowtamEncodingFragment newInstance(String param1, String param2) {
         FirstSnowtamEncodingFragment fragment = new FirstSnowtamEncodingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        location = getActivity().getIntent().getExtras().getString("location");
+        all = getActivity().getIntent().getExtras().getString("all");
+        StateName = getActivity().getIntent().getExtras().getString("StateName");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_snowtam_encoding, container, false);
+        View view= inflater.inflate(R.layout.fragment_first_snowtam_encoding, container, false);
+
+        airportName = view.findViewById(R.id.airportName);
+        allView = view.findViewById(R.id.all);
+        Snowtam sn = new Snowtam();
+        sn.setStateName(StateName);
+        sn.setLocation(location);
+        sn.setAll(all);
+        allView.setText(sn.getSnowtamData(sn.getAll()));
+        airportName.setText(StateName);
+        return view;
+
     }
 }

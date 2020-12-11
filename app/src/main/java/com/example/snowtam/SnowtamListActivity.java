@@ -3,6 +3,7 @@ package com.example.snowtam;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +28,7 @@ public class SnowtamListActivity extends AppCompatActivity {
     Toolbar toolbar;
     Button recentButton;
     Button favoritesButton;
-    List<String> listresearch;
+    ArrayList<Snowtam> listresearch;
     RecyclerView recyclerView;
     SnowtamListAdapter snowtamListAdapter;
 
@@ -70,21 +71,19 @@ public class SnowtamListActivity extends AppCompatActivity {
         });
 
         //Get the data and display them in the recyclerView
-<<<<<<< HEAD
 //
         Intent resultsearchIntent = getIntent();
         Bundle bundlegot = resultsearchIntent.getBundleExtra("BUNDLE");
         listresearch = (ArrayList<Snowtam>) bundlegot.getSerializable("tabresarchs");
         snowtamListAdapter = new SnowtamListAdapter(listresearch);
         recyclerView.setAdapter(snowtamListAdapter);
-=======
 
 //        Intent resultsearchIntent = getIntent();
 //        listresearch = resultsearchIntent.getStringArrayListExtra("tabresarchs");
 //        snowtamListAdapter=new SnowtamListAdapter(listresearch);
 //        recyclerView.setAdapter(snowtamListAdapter);
 
-        //get icoa
+        /*get icoa
         String oaci1 = getIntent().getStringExtra("oaci1");
         String oaci2 = getIntent().getStringExtra("oaci2");
         String oaci3 = getIntent().getStringExtra("oaci3");
@@ -109,14 +108,6 @@ public class SnowtamListActivity extends AppCompatActivity {
 
 
         }
-
-
-
-        for (int i = 0; i < oacicodeList.size(); i++) {
-          listresearch.add(SnowtamGetter.searchSnowtam(SnowtamListActivity.this, oacicodeList.get(i)));
-            mAdapter=new SnowtamListAdapter(listresearch);
-            recyclerView.setAdapter(mAdapter);
->>>>>>> 62dc7f3c51f7e934001111cece1e145960e2826c
 
        /* for(int i=0; i<listresearchArray.length;i++){
             SnowtamGetter.searchSnowtam(this, listresearchArray[i], rep, error);
