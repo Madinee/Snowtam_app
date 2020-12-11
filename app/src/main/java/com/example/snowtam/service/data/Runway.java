@@ -48,7 +48,7 @@ public class Runway {
         runway = toString();
     }
 
-    public String toString() {
+    public String showRunway() {
         String ret = new String();
         ret = "C) " + ident;
         if(!longDeblayee.isEmpty())
@@ -131,9 +131,9 @@ public class Runway {
                     ident_decode = ident.substring(0, ident.indexOf("R")) + " RIGHT";
                 } else {
                     if(Integer.parseInt(ident) < 50) {
-                        ident_decode = ident + " LEFT";
+                        ident_decode = "C)"+ident + " LEFT";
                     } else {
-                        ident_decode = ident + " RIGHT";
+                        ident_decode = "C)"+ident + " RIGHT";
                     }
                 }
             }
@@ -152,7 +152,7 @@ public class Runway {
     private void translateE() {
         largDeblayee_decode = new String();
         if(!largDeblayee.isEmpty()) {
-            largDeblayee_decode = "CLEARED RUNWAY WIDTH " + largDeblayee + "M";
+            largDeblayee_decode = "E) CLEARED RUNWAY WIDTH " + largDeblayee + "M";
         }
         Log.d("TRANSLATE", "E) : '" + largDeblayee_decode + "'");
     }
@@ -160,7 +160,7 @@ public class Runway {
     private void translateF() {
         condition_decode = new String();
         if(!condition.isEmpty()) { //1/1/1
-            condition_decode = "Threshold: " + condition(condition.substring(0,1)) + " / " +
+            condition_decode = "F) Threshold: " + condition(condition.substring(0,1)) + " / " +
                     "Mid runway: " + condition(condition.substring(2,3)) + " / " +
                     "Roll out: " + condition(condition.substring(4));
         }
@@ -357,7 +357,7 @@ public class Runway {
                     etatTaxiways_decode += str + " ";
                 }
                 etatTaxiways_decode = etatTaxiways_decode.substring(0, etatTaxiways_decode.length() - 3); //retire le /X à la fin
-                etatTaxiways_decode += " : " + condition(etatTaxiways.split("/")[1]);
+                etatTaxiways_decode += " : " + condition(etatTaxiways.split("/")[0]);
             }
         }
         Log.d("TRANSLATE", "N) : '" + etatTaxiways_decode + "'");

@@ -103,7 +103,8 @@ public class Snowtam implements Serializable {
     //Parsing functions
 
     public String getSnowtamData(String snowtam){
-        String parsedSnowtam="A)"+parseA(snowtam)+"\n"+"B)"+parseB(snowtam)+"\n"+"R)"+parseR(snowtam)+"\n"+"S)"+parseS(snowtam)+"\n"+"T)"+parseT(snowtam);
+        String parsedSnowtam="A)"+parseA(snowtam)+"\n"+"B)"+parseB(snowtam)+"\n"+
+                "R)"+parseR(snowtam)+"\n"+"S)"+parseS(snowtam)+"\n"+"T)"+parseT(snowtam);
         return parsedSnowtam;
     }
 
@@ -172,7 +173,18 @@ public class Snowtam implements Serializable {
         return t;
     }
 
-    public void translateSnowtam() {
+    private void parseSnowtam(String str) {
+        indicateurEmplacement = parseA(str);
+        publicationDate = parseB(str);
+        runways = parseRunways(str);
+        airDeTrafic = parseR(str);
+        prochaineObservation = parseS(str);
+        remarques = parseT(str);
+    }
+
+
+    public String translateSnowtam(String str) {
+        parseSnowtam(str);
         translateA();
         translateB();
         translateR();
@@ -180,18 +192,19 @@ public class Snowtam implements Serializable {
         translateT();
 
         snowtamTranslated = new String();
-        snowtamTranslated = indicateurEmplacement_decode + "\n\n" +
+        snowtamTranslated = "A)"+indicateurEmplacement_decode + "\n" +"B)"+
                 publicationDate_decode + "\n\n";
         for (Runway r : runways) {
             snowtamTranslated += r.translated();
         }
         if(!airDeTrafic_decode.isEmpty())
-            snowtamTranslated += airDeTrafic_decode + "\n\n";
+            snowtamTranslated += "R)"+airDeTrafic_decode + "\n";
         if(!prochaineObservation_decode.isEmpty())
-            snowtamTranslated += prochaineObservation_decode + "\n\n";
+            snowtamTranslated += "S)"+prochaineObservation_decode + "\n";
         if(!remarques_decode.isEmpty())
-            snowtamTranslated += remarques_decode;
+            snowtamTranslated += "T)"+remarques_decode;
         Log.d("SNOWTAM", "'" + snowtamTranslated + "'");
+        return snowtamTranslated;
     }
 
     private void translateA() {

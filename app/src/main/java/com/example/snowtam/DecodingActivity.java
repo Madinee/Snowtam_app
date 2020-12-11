@@ -10,15 +10,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import com.example.snowtam.R;
-import com.example.snowtam.adapter.EncodingViewPagerAdapter;
+import com.example.snowtam.service.data.Snowtam;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DecodingActivity extends AppCompatActivity {
     Toolbar toolbar;
     ViewPager viewPager;
     FloatingActionButton fab;
+    Intent intent2;
+    TextView airportName, allView;
+    String location2,all,StateName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +31,25 @@ public class DecodingActivity extends AppCompatActivity {
         //find view
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.floatingActionButton);
-        viewPager = findViewById(R.id.page_view);
+        airportName = findViewById(R.id.airportName1);
+        allView = findViewById(R.id.all1);
 
-        //set viewPager
-        viewPager.setAdapter(new EncodingViewPagerAdapter(getSupportFragmentManager()));
         //to change toolbar title
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(R.string.snowtamDecoding);
 
+        //Get intents Data
+        all = getIntent().getStringExtra("all");
+        StateName = getIntent().getStringExtra("State");
+        //location2 = getIntent().getStringExtra("location");
+        //Show on the activity
+        airportName.setText(StateName);
+        Snowtam sn = new Snowtam();
+        sn.setStateName(StateName);
+        //sn.setLocation(location2);
+        sn.setAll(all);
+        allView.setText(sn.translateSnowtam(sn.getAll()));
 
 //fab button
         fab.setOnClickListener(new View.OnClickListener() {

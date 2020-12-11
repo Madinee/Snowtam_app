@@ -7,16 +7,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.snowtam.adapter.EncodingViewPagerAdapter;
-import com.example.snowtam.adapter.SnowtamListAdapter;
 import com.example.snowtam.service.data.Snowtam;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EncodingActivity extends AppCompatActivity {
@@ -27,6 +24,8 @@ public class EncodingActivity extends AppCompatActivity {
     FloatingActionButton fab;
     String location;
     Intent intent2;
+    TextView airportName, allView;
+    String location2,all,StateName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +35,26 @@ public class EncodingActivity extends AppCompatActivity {
         //find view
         fab = findViewById(R.id.floatingActionButton);
         toolbar = findViewById(R.id.toolbar);
-        viewPager = findViewById(R.id.page_view);
-        viewPager.setAdapter(new EncodingViewPagerAdapter(getSupportFragmentManager()));
 
         //to change toolbar title
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(R.string.snowtamEncoding);
 
+        //Get intents datas
+        location2 = getIntent().getExtras().getString("location");
+        all = getIntent().getExtras().getString("all");
+        StateName = getIntent().getExtras().getString("StateName");
+
+        //TEST
+        airportName = findViewById(R.id.airportName);
+        allView = findViewById(R.id.all);
+        Snowtam sn = new Snowtam();
+        sn.setStateName(StateName);
+        sn.setLocation(location);
+        sn.setAll(all);
+        allView.setText(sn.getSnowtamData(sn.getAll()));
+        airportName.setText(StateName);
 
         //Get the API data to populate the recyclerView
         Intent intent = getIntent();
@@ -57,9 +68,6 @@ public class EncodingActivity extends AppCompatActivity {
                 openOptionsMenu();
             }
         });
-
-
-
 
     }
     @Override
@@ -77,12 +85,18 @@ public class EncodingActivity extends AppCompatActivity {
                 return true;
             case R.id.decoding:
                 intent2 =new Intent(this, DecodingActivity.class);
+                intent2.putExtra("all", all);
+                //intent2.putExtra("location", location);
+                intent2.putExtra("State", StateName);
                 this.startActivity ( intent2 );
                 return true;
             case R.id.map:
+                /*
                 intent2.putExtra("location", location);
                 intent2 =new Intent(this, MapsActivity.class);
                 this.startActivity ( intent2 );
+
+                 */
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
